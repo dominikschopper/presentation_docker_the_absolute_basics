@@ -1,0 +1,27 @@
+{
+  "name": "presentation_docker_the_absolute_basics",
+  "version": "1.0.0",
+  "description": "presentation about docker basics with revealjs",
+  "main": "src/index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dominikschopper/presentation_docker_the_absolute_basics.git"
+  },
+  "keywords": [
+    "docker",
+    "slides",
+    "revealjs"
+  ],
+  "author": "dev@dschopper.de",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/dominikschopper/presentation_docker_the_absolute_basics/issues"
+  },
+  "homepage": "https://github.com/dominikschopper/presentation_docker_the_absolute_basics#readme",
+  "dependencies": {
+    "reveal.js": "^4.0.2"
+  }
+}
