@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>docker - the absolute basics</title>
+
+    <link rel="stylesheet" href="/node_modules/reveal.js/dist/reveal.css" />
+    <link rel="stylesheet" href="/node_modules/reveal.js/dist/theme/simple.css" />
+    <link rel="stylesheet" href="styles/filesystem-layers.css" />
+
+    <script type="module" src="scripts/init.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', (ev) => {
+            console.log('build directory in #directory and skip all with dataSkipInDirectory="true"');
+        });
+    </script>
+
+</head>
+
+<body>
+    <div class="reveal">
+        <div class="slides">
+
+            <section>
+
+                <section class="chapter" data-skip-in-directory="true">
+                    <h2>Docker Basics</h2>
+                    <p>The principles that can help you understand Docker</p>
+                </section>
+
+                <section>
+                    <h4>List of Chapters</h4>
+                    <ul id="directory">
+                        <li>...</li>
+                    </ul>
+                </section>
+            </section>
+
+
+            <section>
+                <section class="chapter">
+                    <h2>Docker is the answer to ...?</h2>
+                    <p>understanding the problem to understand the solution</p>
+
+                    <aside class="notes">
+                        Docker is pretty much everywhere
+                    </aside>
+                </section>
+
+                <section>
+                    <h4>Problems in Computing / Services</h4>
+                    <ul>
+                        <li class="fragment fade-up">servers are expensive and mostly idle</li>
+                        <li class="fragment fade-up">scalability of solutions</li>
+                        <li class="fragment fade-up">virtual machines too big for microservices</li>
+                        <li class="fragment fade-up">...???</li>
+                    </ul>
+                </section>
+            </section>
+
+            <section>
+                <section class="chapter">
+                    <h2>How Does Docker work? 1</h2>
+                    <p>understand Dockers process concept</p>
+                </section>
+
+                <section>
+                    <h4>What does the kernel do?</h4>
+                    <p>to understnad docker, you need to understand the linux kernel</p>
+                    <ul>
+                        <li class="fragment fade-up">manage processes (a list of process ids) assigning cpu times</li>
+                        <li class="fragment fade-up">manage users/owners of processes (a list of user ids) assigning process groups</li>
+                        <li class="fragment fade-up">manage filesystems and directories/files (a list of hardware ids and inodes)</li>
+                        <li class="fragment fade-up">manage network connections (a list of socket ids for ips/ports)</li>
+                    </ul>
+
+                    <aside class="notes" data-markdown>
+                        - linux concepts were the basis for docker
+                        - it was born out of a linux kernel
+                        - lxc the basic concept and for understanding that, we need to understand the work of the kernel
+                    </aside>
+                </section>
+
+                <section>
+                    <section class="chapter">
+                        <h2>How Does Docker work? 2</h2>
+                        <p>understand Dockers filesystem layers</p>
+                    </section>
+                    <section>
+                        <ul>
+                            <li>union filesystem</li>
+                        </ul>
+                    </section>
+                </section>
+
+                <section>
+                    <section class="chapter">
+                        <h2>What is a Docker image?</h2>
+                        <p>layers upon layers!</p>
+                    </section>
+
+                    <section>
+                        <ul>
+                            <li>...</li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h4>reading a dockerfile</h4>
+                    </section>
+                </section>
+
+                <section>
+                    <section class="chapter">
+                        <h2>What is a Docker container?</h2>
+                        <p>layers upon layers!</p>
+                    </section>
+
+                    <section>
+                        <ul>
+                            <li>...</li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h4>working with the docker command</h4>
+                    </section>
+                </section>
+
+
+            </section>
+
+            <section class="chapter">
+                <h2>Thank you!</h2>
+            </section>
+
+
+        </div>
+    </div>
+
+</body>
+
+</html>
