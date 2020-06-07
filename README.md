@@ -1,1 +1,2 @@
-# presentation_docker_the_absolute_basics
+# Slides about "Docker" the absolute basics
+
