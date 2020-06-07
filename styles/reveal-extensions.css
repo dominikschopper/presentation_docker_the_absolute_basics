@@ -1,3 +1,26 @@
 .chapter h2 {
-    font-size: 8rem;
+    font-size: 5.5rem;
+}
+
+.reveal h4 {
+    font-weight: bold;
+}
+
+.reveal .slides li,
+.reveal .slides p {
+    font-size: 0.75em;
+}
+
+.reveal .slides .subtitle {
+    font-size: 0.45em;
+}
+
+.reveal section code {
+    background-color: black;
+    color: white;
+    padding: 0.2em 0.4em;
+}
+
+.reveal section pre {
+    white-space: pre-line;
 }

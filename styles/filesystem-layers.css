@@ -1,0 +1,107 @@
+.layer {
+    display: grid;
+    grid-template-areas: 'a b c d e';
+    grid-template-columns: 90px;
+    grid-template-rows: 70px;
+    width: 500px;
+    height: 500px;
+    padding: 5px 10px;
+}
+
+.layer .connector {
+    height: 1rem;
+    padding: 0;
+}
+.layer .connect-with::before {
+    content: '||';
+}
+
+.layer-01 {
+    color: #323232;
+    border: 1px solid #323232;
+    background-color: lightyellow;
+
+    transform: skewX(-20deg);
+    margin-left: 45px;
+}
+
+.layer-01 .file {
+    background-color: lightyellow;
+    opacity: 0.5;
+}
+.layer-01 .directory {
+    background-color: lightyellow;
+    opacity: 0.5;
+}
+
+.layer-02 {
+    border: 1px solid darkblue;
+    background-color: lightblue;
+    opacity: 0.333;
+    color: darkblue;
+
+    transform: translate(-10px, -494px) skewX(-20deg);
+    margin-left: 45px;
+}
+.layer-02 .file {
+    background-image: url('file-blue.png');
+    background-color: lightblue;
+    color: darkblue;
+    opacity: 0.9;
+}
+.layer-02 .directory {
+    background-image: url('directory-blue.png');
+    background-color: lightblue;
+    opacity: 0.8;
+}
+
+.layer-03 {
+    color: darkgreen;
+    border: 1px solid darkgreen;
+    background-color: lightgreen;
+    opacity: 0.333;
+
+    transform: translate3d(-20px, -988px, 20px) skewX(-20deg);
+    margin-left: 45px;
+}
+
+.layer-03 .file {
+    background-image: url('file.png');
+    background-color: lightgreen;
+    color: black;
+    opacity: 1;
+    transform: translate(7px, -2px);
+}
+
+.layer-03 .directory {
+    background-image: url('directory-green.png');
+    background-color: lightgreen;
+    color: black;
+    opacity: 0.8;
+}
+
+.fs-item {
+    width: 80px;
+    height: 70px;
+
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    padding: 25% 5%;
+    text-overflow: ellipsis;
+    text-align: center;
+    line-height: 50%;
+    font-size: 20px;
+}
+
+.directory {
+    background-image: url('directory.png');
+    font-size: 16px;
+}
+
+.file {
+    background-image: url('file.png');
+    background-size: 60%;
+    padding-top: 35%;
+    font-size: 16px;
+}
