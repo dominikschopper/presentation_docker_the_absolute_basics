@@ -1,28 +1,24 @@
+#outer-layer {
+    padding-left: 5%;
+}
 .layer {
+    box-sizing: border-box;
     display: grid;
     grid-template-areas: 'a b c d e';
-    grid-template-columns: 90px;
-    grid-template-rows: 70px;
+    grid-template-columns: 20%;
+    grid-template-rows: 16.5%;
     width: 500px;
     height: 500px;
-    padding: 5px 10px;
 }
 
-.layer .connector {
-    height: 1rem;
-    padding: 0;
-}
-.layer .connect-with::before {
-    content: '||';
-}
-
-.layer-01 {
+#outer-layer .layer-01 {
     color: #323232;
     border: 1px solid #323232;
     background-color: lightyellow;
 
     transform: skewX(-20deg);
     margin-left: 45px;
+    opacity: 0.7;
 }
 
 .layer-01 .file {
@@ -34,7 +30,7 @@
     opacity: 0.5;
 }
 
-.layer-02 {
+#outer-layer .layer-02 {
     border: 1px solid darkblue;
     background-color: lightblue;
     opacity: 0.333;
@@ -44,18 +40,17 @@
     margin-left: 45px;
 }
 .layer-02 .file {
-    background-image: url('file-blue.png');
+    background-image: url('../images/file-blue.png');
     background-color: lightblue;
     color: darkblue;
-    opacity: 0.9;
 }
 .layer-02 .directory {
-    background-image: url('directory-blue.png');
+    background-image: url('../images/directory-blue.png');
     background-color: lightblue;
     opacity: 0.8;
 }
 
-.layer-03 {
+#outer-layer .layer-03 {
     color: darkgreen;
     border: 1px solid darkgreen;
     background-color: lightgreen;
@@ -66,7 +61,7 @@
 }
 
 .layer-03 .file {
-    background-image: url('file.png');
+    background-image: url('../images/file.png');
     background-color: lightgreen;
     color: black;
     opacity: 1;
@@ -74,7 +69,7 @@
 }
 
 .layer-03 .directory {
-    background-image: url('directory-green.png');
+    background-image: url('../images/directory-green.png');
     background-color: lightgreen;
     color: black;
     opacity: 0.8;
@@ -86,8 +81,7 @@
 
     background-repeat: no-repeat;
     background-position: center;
-    background-size: contain;
-    padding: 25% 5%;
+    background-size: inherit;
     text-overflow: ellipsis;
     text-align: center;
     line-height: 50%;
@@ -95,13 +89,15 @@
 }
 
 .directory {
-    background-image: url('directory.png');
+    background-image: url('../images/directory.png');
+    padding-top: 1%;
     font-size: 16px;
+    line-height: 600%;
 }
 
 .file {
-    background-image: url('file.png');
-    background-size: 60%;
-    padding-top: 35%;
+    background-image: url('../images/file.png');
+    padding-top: 1%;
     font-size: 16px;
+    line-height: 600%;
 }

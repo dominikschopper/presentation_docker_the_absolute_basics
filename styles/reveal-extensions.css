@@ -24,3 +24,47 @@
 .reveal section pre {
     white-space: pre-line;
 }
+
+.align-left {
+    text-align: left;
+}
+
+.align-right {
+    text-align: right;
+}
+
+.strike-through {
+    text-decoration: line-through;
+}
+
+.upper-left-blocker {
+    position: absolute;
+    background-color: white;
+    top: 0px; left: 0px;
+    width: 45%;
+    height: 45%;
+}
+
+.lower-left-blocker {
+    position: absolute;
+    background-color: white;
+    bottom: 0px; left: 0px;
+    width: 45%;
+    height: 45%;
+}
+
+.upper-right-blocker {
+    position: absolute;
+    background-color: white;
+    top: 0px; right: 0px;
+    width: 45%;
+    height: 45%;
+}
+
+.lower-right-blocker {
+    position: absolute;
+    background-color: white;
+    bottom: 0px; right: 0px;
+    width: 45%;
+    height: 45%;
+}
