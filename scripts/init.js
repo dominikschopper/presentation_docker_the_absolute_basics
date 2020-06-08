@@ -1,6 +1,6 @@
-import Reveal from   './reveal.esm.js';
-import Markdown from './plugin/markdown.esm.js';
-import RevealNotes from './plugin/notes.esm.js';
+import Reveal from   '/node_modules/reveal.js/dist/reveal.esm.js';
+import Markdown from '/node_modules/reveal.js/plugin/markdown/markdown.esm.js';
+import RevealNotes from '/node_modules/reveal.js/plugin/notes/notes.esm.js';
 
     document.addEventListener('DOMContentLoaded', (ev) => {
         let deck = new Reveal({
