@@ -1,1 +1,1 @@
-../..//node_modules/reveal.js/plugin/notes/notes.esm.js
+../../node_modules/reveal.js/plugin/notes/notes.esm.js
