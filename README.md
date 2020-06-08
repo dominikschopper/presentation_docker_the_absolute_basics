@@ -6,7 +6,7 @@
 - load the index.html in your browser
 - tap `s` to see the speakers notes
 
-have fun!!
+if you find anything you know better, pls just create a pull request
 
 ## license
 
