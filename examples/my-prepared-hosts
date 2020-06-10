@@ -1,0 +1,21 @@
+127.0.0.1	localhost
+255.255.255.255	broadcasthost
+::1             localhost
+
+10.250.100.28 gitlab.tech.visualvest.de
+
+# --- vagrant local hostnames
+127.0.0.1 service.local.tech.visualvest.de
+127.0.0.1 service-geldanlage.local.tech.visualvest.de
+127.0.0.1 sparda-n.service.local.tech.meininvest.de
+127.0.0.1 bbbank.service.local.tech.meininvest.de
+127.0.0.1 psd-nord.service.local.tech.meininvest.de
+127.0.0.1 vr-mfr.service.local.tech.meininvest.de
+127.0.0.1 frankfurter-volksbank.service.local.tech.meinvermoegen.de
+127.0.0.1 int.local.tech.visualvest.de
+127.0.0.1 int-geldanlage.local.tech.visualvest.de
+127.0.0.1 sparda-n.int.local.tech.meininvest.de
+127.0.0.1 bbbank.int.local.tech.meininvest.de
+127.0.0.1 psd-nord.int.local.tech.meininvest.de
+127.0.0.1 vr-mfr.int.local.tech.meininvest.de
+127.0.0.1 frankfurter-volksbank.int.local.tech.meinvermoegen.de
