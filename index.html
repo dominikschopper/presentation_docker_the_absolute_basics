@@ -12,7 +12,7 @@
     <link rel="stylesheet" type="text/css" href="./styles/reveal-extensions.css" />
     <link rel="stylesheet" type="text/css" href="./styles/filesystem-layers.css" />
 
-    <script type="module" src="./scripts/dist.js"></script>
+    <script type="module" src="./scripts/init.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', (ev) => {
             console.log('build directory in #directory and skip all with dataSkipInDirectory="true"');
@@ -88,6 +88,7 @@
                         - docker started 2008 ... and now kubernetes, rancher, runs on AWS ...
                         ==&gt; running contained services in small flexible environments
                         ==&gt; make them as configurable as possible (IaC)
+                        - Answers to htese needs: AWS / Serverless / Heroku / Openshift
                     </aside>
                 </section>
 
@@ -118,9 +119,10 @@
                         <img src="images/kernel-tasks.png" alt="linux kernel task groups explained" height="420" />
                     </div>
 
-                    <p class="fragment fade-in">
+                    <p class="fragment fade-in" data-autoslide="750">
                         What if Linux Kernels had not <i>one</i> list of processes and users and ...,<br/>
-                        but <i>two</i>?
+                        but <i>two</i> ...
+                        <span class="fragment fade-right" data-autoslide="750">, three</span><span data-autoslide="0" class="fragment fade-right">, four?</span>
                     </p>
 
                     <aside class="notes" aria-label="speakers notes" data-markdown="">
@@ -131,8 +133,7 @@
 
                 <section>
                     <h4>What does the kernel do?</h4>
-
-                    <p class="subtitle">to understand docker, you need to understand the linux kernel</p>
+                    <p class="subtitle">summing up</p>
 
                     <ul>
                         <li class="fragment fade-up">manage processes (a list of process ids) assigning cpu times</li>
@@ -193,16 +194,25 @@
 
                 <section>
                     <section class="chapter">
-                        <h2>How Does Docker work? Pt.&nbsp;2</h2>
+                        <h3>How Does Docker work? Pt.&nbsp;2</h3>
                         <p>understand Dockers filesystem layers</p>
                     </section>
 
 
                     <section>
+                        <h4>Defining the environment of the process</h4>
+                        <p class="subtitle">What is the main part of the environment?</p>
                         <ul>
-                            <li>Now we understand the process</li>
-                            <li>union filesystem</li>
+                            <li class="fragment">filesystem</li>
+                            <li class="fragment">environment variables</li>
+                            <li class="fragment">network ports</li>
+                            <li class="fragment">...</li>
                         </ul>
+
+                        <aside class="notes" aria-label="speakers notes" data-markdown="">
+                            - union filesystem
+                            - this is defined in an image
+                        </aside>
                     </section>
 
                     <section class="chapter">
@@ -211,156 +221,177 @@
                     </section>
 
                     <section>
-                        <ul>
-                            <li>...</li>
-                        </ul>
-                    </section>
+                        <h4>Defining the environment in a Dockerfile</h4>
+                        <pre><code># from where to inherit
+                        FROM ubuntu
 
-                    <section>
-                        <h4>reading a dockerfile</h4>
+                        # setting a global variable
+                        ENV PURPOSE=show_how_it_works
 
-                        <ul>
-                            <li>Dockerfiles define images</li>
-                            <li>images mostly define layers of mounted filesystems</li>
-                        </ul>
+                        # install some stuff
+                        RUN apt-get update && apt-get upgrade -y && apt-get install -y ssh
 
-                        <pre><code>FROM node
-                            ENV NODE_ENV=development
-                            RUN apt update && apt install md5sum
-                            COPY ./prepared-hostsfile.txt /etc/hosts
-                            WORKDIR /var/www/app-root
-                            ENTRYPOINT ["/usr/bin/node", "dist/app.js"]
-                        </code></pre>
-                    </section>
+                        # create a ssh needed dir
+                        RUN mkdir /run/sshd && chmod 0755 /run/sshd
 
-                    <section>
-                        <ul>
-                            <li>...</li>
-                        </ul>
+                        # this is the port we want to use here, when we run
+                        EXPOSE 22
+
+                        # this should be started once we run the image
+                        ENTRYPOINT [ "/usr/sbin/sshd", "-D" ]</code></pre>
+
+                        <aside class="notes" aria-label="speakers notes" data-markdown="">
+                            - union fs
+                            - docker built its won on top of that
+                            - as it did with the cgroups/lxc stuff
+                            - so we dont need a linux kernel anymore
+                        </aside>
                     </section>
 
                     <section>
                         <h4>layers of files</h4>
-                        <div id="outer-layer">
-                            <div class="layer layer-01 fragment fade-in">
+                        <div style="display: flex; justify-content: space-evenly;">
+                            <div id="outer-layer">
+                                <div class="layer layer-01 fragment fade-in">
 
-                                <div class="fs-item"> </div>
-                                <div class="fs-item"> </div>
-                                <div class="fs-item directory">/</div>
-                                <div class="fs-item"></div>
-                                <div class="fs-item"></div>
+                                    <div class="fs-item"> </div>
+                                    <div class="fs-item"> </div>
+                                    <div class="fs-item directory">/</div>
+                                    <div class="fs-item"></div>
+                                    <div class="fs-item"></div>
 
-                                <div class="fs-item directory">bin</div>
-                                <div class="fs-item directory">etc</div>
-                                <div class="fs-item directory">sbin</div>
-                                <div class="fs-item directory">usr</div>
-                                <div class="fs-item directory">var</div>
+                                    <div class="fs-item directory">bin</div>
+                                    <div class="fs-item directory">etc</div>
+                                    <div class="fs-item directory">sbin</div>
+                                    <div class="fs-item directory">usr</div>
+                                    <div class="fs-item directory">run</div>
 
-                                <div class="fs-item file">bash</div>
-                                <div class="fs-item file">hosts</div>
-                                <div class="fs-item file">fdisk</div>
-                                <div class="fs-item directory">bin</div>
-                                <div class="fs-item directory">log</div>
+                                    <div class="fs-item file">bash</div>
+                                    <div class="fs-item file">hosts</div>
+                                    <div class="fs-item file">fdisk</div>
+                                    <div class="fs-item directory">bin</div>
+                                    <div class="fs-item directory"> </div>
 
-                                <div class="fs-item"> </div>
-                                <div class="fs-item"> </div>
-                                <div class="fs-item"> </div>
-                                <div class="fs-item"> </div>
-                                <div class="fs-item"> </div>
+                                    <div class="fs-item"> </div>
+                                    <div class="fs-item"> </div>
+                                    <div class="fs-item"> </div>
+                                    <div class="fs-item"> </div>
+                                    <div class="fs-item"> </div>
 
-                                <div class="fs-item"> </div>
-                                <div class="fs-item"> </div>
-                                <div class="fs-item"> </div>
-                                <div class="fs-item"> </div>
-                                <div class="fs-item"> </div>
+                                    <div class="fs-item"> </div>
+                                    <div class="fs-item"> </div>
+                                    <div class="fs-item"> </div>
+                                    <div class="fs-item"> </div>
+                                    <div class="fs-item"> </div>
 
-                                <div class="fs-item"> </div>
-                                <div class="fs-item"> </div>
-                                <div class="fs-item"> </div>
-                                <div class="fs-item"> </div>
-                                <div class="fs-item"> </div>
-                            </div>
+                                    <div class="fs-item"> </div>
+                                    <div class="fs-item"> </div>
+                                    <div class="fs-item"> </div>
+                                    <div class="fs-item"> </div>
+                                    <div class="fs-item"> </div>
+                                </div>
 
-                            <div class="layer layer-02 fragment fade-in">
-                                <div class="fs-item"> </div>
-                                <div class="fs-item"> </div>
-                                <div class="fs-item"> </div>
-                                <div class="fs-item"> </div>
-                                <div class="fs-item"> </div>
+                                <div class="layer layer-02 fragment fade-in">
+                                    <div class="fs-item"> </div>
+                                    <div class="fs-item"> </div>
+                                    <div class="fs-item"> </div>
+                                    <div class="fs-item"> </div>
+                                    <div class="fs-item"> </div>
 
-                                <div class="fs-item"> </div>
-                                <div class="fs-item"> </div>
-                                <div class="fs-item"> </div>
-                                <div class="fs-item"> </div>
-                                <div class="fs-item"> </div>
+                                    <div class="fs-item"> </div>
+                                    <div class="fs-item"> </div>
+                                    <div class="fs-item"> </div>
+                                    <div class="fs-item"> </div>
+                                    <div class="fs-item"> </div>
 
-                                <div class="fs-item"> </div>
-                                <div class="fs-item"> </div>
-                                <div class="fs-item"> </div>
-                                <div class="fs-item"> </div>
-                                <div class="fs-item"> </div>
+                                    <div class="fs-item"> </div>
+                                    <div class="fs-item"> </div>
+                                    <div class="fs-item"> </div>
+                                    <div class="fs-item"> </div>
+                                    <div class="fs-item"> </div>
 
-                                <div class="fs-item"> </div>
-                                <div class="fs-item"> </div>
-                                <div class="fs-item"> </div>
-                                <div class="fs-item file">md5sum</div>
-                                <div class="fs-item"> </div>
+                                    <div class="fs-item"> </div>
+                                    <div class="fs-item"> </div>
+                                    <div class="fs-item"> </div>
+                                    <div class="fs-item file">ssh</div>
+                                    <div class="fs-item"> </div>
 
-                                <div class="fs-item"> </div>
-                                <div class="fs-item"> </div>
-                                <div class="fs-item"> </div>
-                                <div class="fs-item"> </div>
-                                <div class="fs-item"> </div>
+                                    <div class="fs-item"> </div>
+                                    <div class="fs-item"> </div>
+                                    <div class="fs-item"> </div>
+                                    <div class="fs-item"> </div>
+                                    <div class="fs-item"> </div>
 
-                                <div class="fs-item"> </div>
-                                <div class="fs-item"> </div>
-                                <div class="fs-item"> </div>
-                                <div class="fs-item"> </div>
-                                <div class="fs-item"> </div>
-                            </div>
+                                    <div class="fs-item"> </div>
+                                    <div class="fs-item"> </div>
+                                    <div class="fs-item"> </div>
+                                    <div class="fs-item"> </div>
+                                    <div class="fs-item"> </div>
+                                </div>
 
-                            <div class="layer layer-03 fragment fade-in">
-                                <div class="fs-item"> </div>
-                                <div class="fs-item"> </div>
-                                <div class="fs-item"> </div>
-                                <div class="fs-item"> </div>
-                                <div class="fs-item"> </div>
+                                <div class="layer layer-03 fragment fade-in">
+                                    <div class="fs-item"> </div>
+                                    <div class="fs-item"> </div>
+                                    <div class="fs-item"> </div>
+                                    <div class="fs-item"> </div>
+                                    <div class="fs-item"> </div>
 
-                                <div class="fs-item"> </div>
-                                <div class="fs-item"> </div>
-                                <div class="fs-item"> </div>
-                                <div class="fs-item"> </div>
-                                <div class="fs-item"> </div>
+                                    <div class="fs-item"> </div>
+                                    <div class="fs-item"> </div>
+                                    <div class="fs-item"> </div>
+                                    <div class="fs-item"> </div>
+                                    <div class="fs-item"> </div>
 
-                                <div class="fs-item"> </div>
-                                <div class="fs-item file">hosts</div>
-                                <div class="fs-item"> </div>
-                                <div class="fs-item"> </div>
-                                <div class="fs-item"> </div>
+                                    <div class="fs-item"> </div>
+                                    <div class="fs-item"></div>
+                                    <div class="fs-item"> </div>
+                                    <div class="fs-item"> </div>
+                                    <div class="fs-item directory">sshd</div>
 
-                                <div class="fs-item connector"> </div>
-                                <div class="fs-item connector"> </div>
-                                <div class="fs-item connector"> </div>
-                                <div class="fs-item connector"> </div>
-                                <div class="fs-item connector"> </div>
+                                    <div class="fs-item"> </div>
+                                    <div class="fs-item"> </div>
+                                    <div class="fs-item"> </div>
+                                    <div class="fs-item"> </div>
+                                    <div class="fs-item"></div>
 
-                                <div class="fs-item"> </div>
-                                <div class="fs-item"> </div>
-                                <div class="fs-item"> </div>
-                                <div class="fs-item"> </div>
-                                <div class="fs-item"> </div>
+                                    <div class="fs-item"> </div>
+                                    <div class="fs-item"> </div>
+                                    <div class="fs-item"> </div>
+                                    <div class="fs-item"> </div>
+                                    <div class="fs-item"> </div>
 
-                                <div class="fs-item"> </div>
-                                <div class="fs-item"> </div>
-                                <div class="fs-item"> </div>
-                                <div class="fs-item"> </div>
-                                <div class="fs-item"> </div>
+                                    <div class="fs-item"> </div>
+                                    <div class="fs-item"> </div>
+                                    <div class="fs-item"> </div>
+                                    <div class="fs-item"> </div>
+                                    <div class="fs-item"> </div>
+                                </div>
                             </div>
                         </div>
                     </section>
 
                     <section>
                         <h4>working with the docker command</h4>
+
+                        <p>image commands</p>
+                        <ul>
+                            <li>create an image from a Dockerfile <code>docker build -t name .</code></li>
+                            <li>view docker images <code>docker images</code></li>
+                            <li>delete a docker image <code>docker rmi [name]</code></li>
+                        </ul>
+
+                        <p>container commands</p>
+                        <ul>
+                            <li>start a container from an image <code>docker run image</code></li>
+                            <li>view running containers <code>docker ps</code></li>
+                            <li>view running and stopped containers <code>docker ps -a</code></li>
+                            <li>stop a container <code>docker stop containerid|name</code></li>
+                            <li>delete a stopped container <code>docker rm containerid|name</code></li>
+                        </ul>
+
+                        <aside class="notes" aria-label="speakers notes" data-markdown="">
+                            - you can only copy something from inside your Dockerfiles directory!
+                        </aside>
                     </section>
                 </section>
 
