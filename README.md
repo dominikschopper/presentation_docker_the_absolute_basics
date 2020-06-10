@@ -19,7 +19,3 @@ i consider you well behaved, if you mention where you got it from
 ## famous last words
 
 go have fun with it!
-
-## ps: this is also available at
-
-[github.io](https://github.io)
