@@ -14,7 +14,7 @@ no license, use as you like
 
 no guarantee that anything i state here is valid|true|useful
 
-i consider you well behaved, if you mention where you got it from
+i will consider you well behaved, if you mention where you got it from when you use this
 
 ## famous last words
 
