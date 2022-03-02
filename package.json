@@ -22,6 +22,6 @@
   },
   "homepage": "https://github.com/dominikschopper/presentation_docker_the_absolute_basics#readme",
   "dependencies": {
-    "reveal.js": "^4.0.2"
+    "reveal.js": "^4.3.0"
   }
 }
