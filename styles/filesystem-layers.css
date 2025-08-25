@@ -1,6 +1,12 @@
+/*defining the common props of the  layers*/
 #outer-layer {
     padding-left: 5%;
 }
+
+#outer-layer * {
+    box-sizing: border-box;
+}
+
 .layer {
     box-sizing: border-box;
     display: grid;
@@ -10,6 +16,37 @@
     width: 500px;
     height: 500px;
 }
+
+
+.fs-item {
+    width: 80px;
+    height: 70px;
+
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: inherit;
+    text-overflow: ellipsis;
+    text-align: center;
+    line-height: 50%;
+    font-size: 20px;
+}
+
+.directory {
+    background-image: url('../images/directory.png');
+    padding-top: 1%;
+    padding-bottom: 2%;
+    font-size: 16px;
+    line-height: 3.75em;
+}
+
+.file {
+    background-image: url('../images/file.png');
+    padding-top: 1%;
+    font-size: 16px;
+    line-height: 600%;
+}
+
+/*defining the difference of the  layers*/
 
 #outer-layer .layer-01 {
     color: #323232;
@@ -31,22 +68,22 @@
 }
 
 #outer-layer .layer-02 {
-    border: 1px solid darkblue;
-    background-color: lightblue;
+    border: 1px solid darkred;
+    background-color: lightcoral;
     opacity: 0.333;
-    color: darkblue;
+    color: darkred;
 
     transform: translate(-10px, -494px) skewX(-20deg);
     margin-left: 45px;
 }
 .layer-02 .file {
     background-image: url('../images/file-blue.png');
-    background-color: lightblue;
-    color: darkblue;
+    background-color: lightcoral;
+    color: darkred;
 }
 .layer-02 .directory {
     background-image: url('../images/directory-blue.png');
-    background-color: lightblue;
+    background-color: lightcoral;
     opacity: 0.8;
 }
 
@@ -73,31 +110,4 @@
     background-color: lightgreen;
     color: black;
     opacity: 0.8;
-}
-
-.fs-item {
-    width: 80px;
-    height: 70px;
-
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: inherit;
-    text-overflow: ellipsis;
-    text-align: center;
-    line-height: 50%;
-    font-size: 20px;
-}
-
-.directory {
-    background-image: url('../images/directory.png');
-    padding-top: 1%;
-    font-size: 16px;
-    line-height: 600%;
-}
-
-.file {
-    background-image: url('../images/file.png');
-    padding-top: 1%;
-    font-size: 16px;
-    line-height: 600%;
 }

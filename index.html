@@ -46,15 +46,15 @@
                     <h4>Disclaimer</h4>
 
                     <ul>
-                        <li class="fragment fade-in" data-autoslide="1250">we will <b>not talk</b> about docker-compose</li>
-                        <li class="fragment fade-in" data-autoslide="1250">we will <b>not talk</b> about kubernetes</li>
-                        <li class="fragment fade-in" data-autoslide="1250">we will <b>only talk</b> about basic principles</li>
+                        <li class="fragment" data-autoslide="1250">we will <b>not talk</b> about docker-compose</li>
+                        <li class="fragment" data-autoslide="1250">we will <b>not talk</b> about kubernetes</li>
+                        <li class="fragment" data-autoslide="1250">we will <b>only talk</b> about basic principles</li>
                     </ul>
 
-                    <p class="fragment fade-in align-left" data-autoslide="750">
+                    <p class="fragment align-left" data-autoslide="750">
                         if you want to participate in the exercises, install docker!
                     </p>
-                    <pre class="fragment fade-in align-left" data-autoslide="0"><code>brew install docker # on MacOS
+                    <pre class="fragment align-left" data-autoslide="0"><code>brew install docker # on MacOS
                         &lt;yum|apt|...&gt; install &lt;docker-ce|docker|...&gt; # on Linux</code></pre>
                 </section>
             </section>
@@ -248,126 +248,41 @@
                         </aside>
                     </section>
 
+                    <section id="filesystem-layers">
+                        <h4>layers of filesystems</h4>
+
+                        <span id="svglayer1" class="fragment"></span><span id="svglayer2" class="fragment"></span>
+                        <object id="svg" type="image/svg+xml" data="./images/docker_filesystem_layer1.svg" />
+
+                        <aside class="notes" aria-label="speakers notes" data-markdown="">
+                            - union filesystems work in layers
+                            - every lower layer is "visible" but not writeable
+                            - so we can "overwrite" deeper layers on dir/file level
+                            - running this in a container adds another write layer on top
+                        </aside>
+                    </section>
+
                     <section>
-                        <h4>layers of files</h4>
-                        <div style="display: flex; justify-content: space-evenly;">
-                            <div id="outer-layer">
-                                <div class="layer layer-01 fragment fade-in">
+                        <h4>Building Docker images</h4>
 
-                                    <div class="fs-item"> </div>
-                                    <div class="fs-item"> </div>
-                                    <div class="fs-item directory">/</div>
-                                    <div class="fs-item"></div>
-                                    <div class="fs-item"></div>
+                        <ol>
+                            <li>
+                                build a docker image named "echo-server" from this Dockerfile and let it run as a container
+                                <pre><code>FROM ubuntu
+                                    ENV TEST_ME=world
+                                    ENTRYPOINT echo "Hello $TEST_ME"
+                                </code></pre>
+                                what happens? why? what does <code>docker ps</code> tell you? what does <code>docker ps -a</code> tell you?
+                            </li>
+                            <li>
+                                build an docker image "sleep-server" from this dockerfile
+                                <pre><code># from where to inherit
+                                FROM ubuntu
 
-                                    <div class="fs-item directory">bin</div>
-                                    <div class="fs-item directory">etc</div>
-                                    <div class="fs-item directory">sbin</div>
-                                    <div class="fs-item directory">usr</div>
-                                    <div class="fs-item directory">run</div>
-
-                                    <div class="fs-item file">bash</div>
-                                    <div class="fs-item file">hosts</div>
-                                    <div class="fs-item file">fdisk</div>
-                                    <div class="fs-item directory">bin</div>
-                                    <div class="fs-item directory"> </div>
-
-                                    <div class="fs-item"> </div>
-                                    <div class="fs-item"> </div>
-                                    <div class="fs-item"> </div>
-                                    <div class="fs-item"> </div>
-                                    <div class="fs-item"> </div>
-
-                                    <div class="fs-item"> </div>
-                                    <div class="fs-item"> </div>
-                                    <div class="fs-item"> </div>
-                                    <div class="fs-item"> </div>
-                                    <div class="fs-item"> </div>
-
-                                    <div class="fs-item"> </div>
-                                    <div class="fs-item"> </div>
-                                    <div class="fs-item"> </div>
-                                    <div class="fs-item"> </div>
-                                    <div class="fs-item"> </div>
-                                </div>
-
-                                <div class="layer layer-02 fragment fade-in">
-                                    <div class="fs-item"> </div>
-                                    <div class="fs-item"> </div>
-                                    <div class="fs-item"> </div>
-                                    <div class="fs-item"> </div>
-                                    <div class="fs-item"> </div>
-
-                                    <div class="fs-item"> </div>
-                                    <div class="fs-item"> </div>
-                                    <div class="fs-item"> </div>
-                                    <div class="fs-item"> </div>
-                                    <div class="fs-item"> </div>
-
-                                    <div class="fs-item"> </div>
-                                    <div class="fs-item"> </div>
-                                    <div class="fs-item"> </div>
-                                    <div class="fs-item"> </div>
-                                    <div class="fs-item"> </div>
-
-                                    <div class="fs-item"> </div>
-                                    <div class="fs-item"> </div>
-                                    <div class="fs-item"> </div>
-                                    <div class="fs-item file">ssh</div>
-                                    <div class="fs-item"> </div>
-
-                                    <div class="fs-item"> </div>
-                                    <div class="fs-item"> </div>
-                                    <div class="fs-item"> </div>
-                                    <div class="fs-item"> </div>
-                                    <div class="fs-item"> </div>
-
-                                    <div class="fs-item"> </div>
-                                    <div class="fs-item"> </div>
-                                    <div class="fs-item"> </div>
-                                    <div class="fs-item"> </div>
-                                    <div class="fs-item"> </div>
-                                </div>
-
-                                <div class="layer layer-03 fragment fade-in">
-                                    <div class="fs-item"> </div>
-                                    <div class="fs-item"> </div>
-                                    <div class="fs-item"> </div>
-                                    <div class="fs-item"> </div>
-                                    <div class="fs-item"> </div>
-
-                                    <div class="fs-item"> </div>
-                                    <div class="fs-item"> </div>
-                                    <div class="fs-item"> </div>
-                                    <div class="fs-item"> </div>
-                                    <div class="fs-item"> </div>
-
-                                    <div class="fs-item"> </div>
-                                    <div class="fs-item"></div>
-                                    <div class="fs-item"> </div>
-                                    <div class="fs-item"> </div>
-                                    <div class="fs-item directory">sshd</div>
-
-                                    <div class="fs-item"> </div>
-                                    <div class="fs-item"> </div>
-                                    <div class="fs-item"> </div>
-                                    <div class="fs-item"> </div>
-                                    <div class="fs-item"></div>
-
-                                    <div class="fs-item"> </div>
-                                    <div class="fs-item"> </div>
-                                    <div class="fs-item"> </div>
-                                    <div class="fs-item"> </div>
-                                    <div class="fs-item"> </div>
-
-                                    <div class="fs-item"> </div>
-                                    <div class="fs-item"> </div>
-                                    <div class="fs-item"> </div>
-                                    <div class="fs-item"> </div>
-                                    <div class="fs-item"> </div>
-                                </div>
-                            </div>
-                        </div>
+                                ENTRYPOINT [ "/usr/bin/sleep", "100" ] </code></pre>
+                                run it as a container. inspect with <code>docker ps</code> and <code>docker ps -a</code>
+                            </li>
+                        </ol>
                     </section>
 
                     <section>

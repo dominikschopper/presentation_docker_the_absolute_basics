@@ -1,0 +1,157 @@
+<svg viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg">
+  <!-- Layer 1 Group -->
+  <g id="fs-layer1" opacity="1" transform="translate(420, 0) skewX(-45)">
+    <!-- Layer Background (Blatt-Form) -->
+    <path d="M20 200 h700 v300 h-690 z"
+          fill="#90EE90"
+          stroke="#228B22"
+          stroke-width="2"/>
+
+    <!-- Layer Label -->
+    <text x="400" y="255" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#2F4F2F">
+      Layer 1 (Base)
+    </text>
+
+    <!-- Root Directory Symbol -->
+    <g id="root-folder">
+      <!-- Folder Icon -->
+      <rect x="385" y="290" width="30" height="20" rx="2" fill="#333" stroke="#000" stroke-width="1"/>
+      <rect x="390" y="285" width="20" height="4" rx="2" fill="#333" stroke="#000" stroke-width="1"/>
+      <!-- Root Label -->
+      <text x="400" y="325" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#333">
+        / (root)
+      </text>
+    </g>
+
+    <!-- Horizontal Connection Lines -->
+    <!-- Main horizontal line from root -->
+    <line x1="400" y1="335" x2="400" y2="350" stroke="#666" stroke-width="2"/>
+    <line x1="150" y1="350" x2="650" y2="350" stroke="#666" stroke-width="2"/>
+
+    <!-- Vertical lines to subdirectories -->
+    <line x1="225" y1="350" x2="225" y2="360" stroke="#666" stroke-width="2"/>
+    <line x1="340" y1="350" x2="340" y2="360" stroke="#666" stroke-width="2"/>
+    <line x1="460" y1="350" x2="460" y2="360" stroke="#666" stroke-width="2"/>
+    <line x1="575" y1="350" x2="575" y2="360" stroke="#666" stroke-width="2"/>
+
+    <!-- /boot Directory -->
+    <g id="boot-folder">
+      <!-- Folder Icon -->
+      <rect x="210" y="360" width="30" height="20" rx="2" fill="#333" stroke="#000" stroke-width="1"/>
+      <rect x="215" y="355" width="20" height="4" rx="2" fill="#333" stroke="#000" stroke-width="1"/>
+      <!-- Label -->
+      <text x="225" y="395" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#333">
+        boot
+      </text>
+    </g>
+
+    <!-- /etc Directory -->
+    <g id="etc-folder">
+      <!-- Folder Icon -->
+      <rect x="325" y="360" width="30" height="20" rx="2" fill="#333" stroke="#000" stroke-width="1"/>
+      <rect x="330" y="355" width="20" height="4" rx="2" fill="#333" stroke="#000" stroke-width="1"/>
+      <!-- Label -->
+      <text x="340" y="395" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#333">
+        etc
+      </text>
+    </g>
+
+    <!-- /home Directory -->
+    <g id="home-folder">
+      <!-- Folder Icon -->
+      <rect x="445" y="360" width="30" height="20" rx="2" fill="#333" stroke="#000" stroke-width="1"/>
+      <rect x="450" y="355" width="20" height="4" rx="2" fill="#333" stroke="#000" stroke-width="1"/>
+      <!-- Label -->
+      <text x="460" y="395" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#333">
+        home
+      </text>
+    </g>
+
+    <!-- /var Directory -->
+    <g id="var-folder">
+      <!-- Folder Icon -->
+      <rect x="560" y="360" width="30" height="20" rx="2" fill="#333" stroke="#000" stroke-width="1"/>
+      <rect x="565" y="355" width="20" height="4" rx="2" fill="#333" stroke="#000" stroke-width="1"/>
+      <!-- Label -->
+      <text x="575" y="395" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#333">
+        var
+      </text>
+    </g>
+  </g>
+
+  <!-- Layer 2 Group (halbtransparent, leicht versetzt) -->
+  <g id="fs-layer2" opacity="0.25" transform="translate(440, -40) skewX(-45)">
+    <!-- Layer Background (Blatt-Form) -->
+    <path d="M20 200 h700 v350 h-700 z"
+          fill="#D3D3D3"
+          stroke="#A9A9A9"
+          stroke-width="2"/>
+
+    <!-- Layer Label -->
+    <text x="400" y="280" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#696969">
+      Layer 2 (Application)
+    </text>
+
+    <!-- Connection lines for /etc -> nginx -->
+    <line x1="360" y1="425" x2="360" y2="450" stroke="#666" stroke-width="2"/>
+    <line x1="360" y1="450" x2="270" y2="450" stroke="#666" stroke-width="2"/>
+    <line x1="270" y1="450" x2="270" y2="470" stroke="#666" stroke-width="2"/>
+
+    <!-- /etc/nginx Directory -->
+    <g id="nginx-folder" transform="translate(0, 60)">
+      <!-- Folder Icon -->
+      <rect x="255" y="410" width="30" height="20" rx="2" fill="#333" stroke="#000" stroke-width="1"/>
+      <rect x="260" y="405" width="20" height="4" rx="2" fill="#333" stroke="#000" stroke-width="1"/>
+      <!-- Label -->
+      <text x="270" y="445" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#333">
+        nginx
+      </text>
+    </g>
+
+    <!-- Connection lines for /var -> www -->
+    <line x1="595" y1="425" x2="595" y2="445" stroke="#666" stroke-width="2"/>
+    <line x1="595" y1="445" x2="550" y2="445" stroke="#666" stroke-width="2"/>
+    <line x1="550" y1="445" x2="550" y2="470" stroke="#666" stroke-width="2"/>
+
+    <!-- /var/www Directory -->
+    <g id="www-folder" transform="translate(45, 65)">
+      <!-- Folder Icon -->
+      <rect x="490" y="410" width="30" height="20" rx="2" fill="#333" stroke="#000" stroke-width="1"/>
+      <rect x="495" y="405" width="20" height="4" rx="2" fill="#333" stroke="#000" stroke-width="1"/>
+      <!-- Label -->
+      <text x="505" y="445" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#333">
+        www
+      </text>
+    </g>
+  </g>
+
+  <!-- Layer 3 Group (noch heller, weiter versetzt) -->
+  <g id="fs-layer3" opacity="0.25" transform="translate(420, -90) skewX(-45)">
+    <!-- Layer Background (Blatt-Form) -->
+    <path d="M20 250 h700 v400 h-700 z"
+          fill="#E8E8E8"
+          stroke="#BEBEBE"
+          stroke-width="2"/>
+
+    <!-- Layer Label -->
+    <text x="400" y="275" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#303080">
+      Layer 3 (App)
+    </text>
+
+    <!-- Connection lines for /var/www -> app -->
+    <line x1="615" y1="540" x2="615" y2="565" stroke="#666" stroke-width="2"/>
+    <line x1="615" y1="565" x2="580" y2="565" stroke="#666" stroke-width="2"/>
+    <line x1="580" y1="565" x2="580" y2="575" stroke="#666" stroke-width="2"/>
+
+    <!-- /var/www/app Directory -->
+    <g id="app-folder" transform="translate(145, 120)">
+      <!-- Folder Icon -->
+      <rect x="420" y="460" width="30" height="20" rx="2" fill="#333" stroke="#000" stroke-width="1"/>
+      <rect x="425" y="455" width="20" height="4" rx="2" fill="#333" stroke="#000" stroke-width="1"/>
+      <!-- Label -->
+      <text x="435" y="495" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#333">
+        app
+      </text>
+    </g>
+  </g>
+</svg>

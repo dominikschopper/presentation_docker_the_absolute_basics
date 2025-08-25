@@ -4,8 +4,8 @@ import RevealNotes from '/node_modules/reveal.js/plugin/notes/notes.esm.js';
 
     document.addEventListener('DOMContentLoaded', (ev) => {
         let deck = new Reveal({
-            width: 960,
-            height: 700,
+            width: 1200,
+            height: 900,
 
             // Factor of the display size that should remain empty around the content
             margin: 0.04,
@@ -29,4 +29,41 @@ import RevealNotes from '/node_modules/reveal.js/plugin/notes/notes.esm.js';
             ]
         })
         deck.initialize();
+
+        const obj = document.getElementById('svg');
+        console.log('<<<object', obj);
+        let svg = null;
+        const svgLayers = [  ];
+
+        obj.addEventListener('load', (ev) => {
+            svg = obj.contentDocument; // Zugriff auf das DOM im <object>
+            console.log('ev %o svg %o', ev, svg);
+            svgLayers.push(svg.querySelector('#fs-layer2'));
+            svgLayers.push(svg.querySelector('#fs-layer3'));
+            console.log('<<<layers', svgLayers);
+                    // hiding everything by default
+            svgLayers.forEach(el => {
+                console.log('svg layer', el.id);
+                el.setAttribute('opacity', '0');
+            });
+        });
+
+
+        let nextLayer = 0;
+
+        function showNextLayer() {
+            if (nextLayer < 2) {
+                console.log('shwing layer', nextLayer);
+                svgLayers[nextLayer].setAttribute('opacity', '0.666');
+                nextLayer += 1;
+            }
+        }
+        deck.on('fragmentshown', event => {
+            console.log('>>currentFragment', event.fragment);
+
+            if (['svglayer1', 'svglayer2'].includes(event.fragment.id)) {
+							showNextLayer();
+						}
+        });
+
     });
